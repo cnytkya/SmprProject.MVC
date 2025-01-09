@@ -15,5 +15,14 @@ namespace SmpProject.MVC.Data
              2.	Parametre (Parameter): DbContextOptions options parametresi, Entity Framework Core'un DbContextOptions sınıfından türetilmiş bir nesneyi alır. Bu nesne, veritabanı bağlantı bilgilerini ve diğer yapılandırma seçeneklerini içerir.
             */
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) //OnModelCreating metodu, DbContext sınıfından devralınan bir metottur ve veritabanı modelini oluşturmak için kullanılır. Bu metot, veritabanı tablolarını ve ilişkilerini tanımlamak için kullanılır.
+        {
+            modelBuilder.Entity<Category>().HasData( //Entity<Category> ifadesi, Category sınıfının bir örneğini temsil eder. HasData metodu, veritabanına başlangıç verileri eklemek için kullanılır.
+                new Category { Id = 1, Name = "C# Programming", DisplayOrder = 1 }, //Category sınıfının bir örneği oluşturulur ve veritabanına eklenir.
+                new Category { Id = 2, Name = "ASP.NET Core", DisplayOrder = 2 },
+                new Category { Id = 3, Name = "Entity Framework Core", DisplayOrder = 3 }
+            );
+        }
     }
 }

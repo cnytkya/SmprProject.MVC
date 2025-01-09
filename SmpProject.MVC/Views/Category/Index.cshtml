@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SmpProject.MVC.Models.Category>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h2>Category List</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Add New Category</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Display Order</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var category in Model)
+            {
+                <tr>
+                    <td>@category.Id</td>
+                    <td>@category.Name</td>
+                    <td>@category.DisplayOrder</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@category.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">No categories found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
